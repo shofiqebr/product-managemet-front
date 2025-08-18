@@ -1,0 +1,137 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* :root {
+  --background: #ffffff;
+  --foreground: #171717;
+} */
+
+
+/* @theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+} */
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+/* body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+} */
+
+
+*{
+    margin:0;
+    padding:0;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+/* loader */
+
+.swiper-button-prev,
+.swiper-button-next {
+	background-color: white;
+	color: green;
+	padding: 10px;
+  font-size: 16px;
+	border-radius: 50%;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+	background-color: green;
+	color: white;
+}
+
+.swiper-button-prev {
+	left: 16px;
+}
+
+.swiper-button-next {
+	right: 16px;
+}
+
+
+input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+
+/* Custom styles for the select and options */
+.custom-select {
+  padding: 8px;
+  background-color: #FFFFFF;
+  color: #333;
+}
+
+
+.custom-select option {
+  background-color: #FFFFFF; 
+  color: #333; 
+}
+
+
+.fade-carousel .slide {
+  opacity: 0;
+  transform: none !important; /* বাম/ডান স্লাইড বন্ধ */
+  transition: opacity 1s ease-in-out !important;
+}
+
+.fade-carousel .slide.selected {
+  opacity: 1;
+}
+
+.react-datepicker-popper {
+  z-index: 9999 !important;
+}
+
+
+:root {
+  --color-primary: #15803d;
+  --color-primary-light: #16a34a;
+  --color-primary-min: #dcfce7;
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-primary-light {
+  background-color: var(--color-primary-light);
+}
+
+.bg-primary-min {
+  background-color: var(--color-primary-min);
+}
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
