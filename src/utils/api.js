@@ -22,6 +22,11 @@ export const registerApi = async (data) => {
   return res.json();
 };
 
+export const fetchUsers = async () => {
+  const res = await axios.get(`${API}/users`);
+  return res.data.data; // return array of users
+};
+
 
 
 // Fetch all products

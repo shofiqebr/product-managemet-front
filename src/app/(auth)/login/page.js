@@ -17,7 +17,7 @@ export default function LoginPage() {
     onSuccess: (data) => {
       console.log(data)
       // ✅ expect your API returns { token: "...", user: {...} }
-      setAuth({ token: data.data.token, user: data.data.name });
+      setAuth({ token: data.data.token, user: data.data.name, email: data.data.email });
 
       toast.success("✅ Login successful!");
       router.push("/");

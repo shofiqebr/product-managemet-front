@@ -10,7 +10,10 @@ import {
   fetchProducts,
   createProduct,
   updateProduct,
+  fetchUsers,
 } from "@/utils/api";
+import RepairFormModal from "./components/RepairFormModal";
+import useAuthStore from "@/store/authStore";
 
 // Product Form Modal Component
 const ProductFormModal = ({ isOpen, onClose, onSubmit, initialData }) => {
@@ -194,7 +197,8 @@ const Home = () => {
   const queryClient = useQueryClient();
   const [modalOpen, setModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
-
+  const [repairModalOpen, setRepairModalOpen] = useState(false);
+const [repairingProduct, setRepairingProduct] = useState(null);
   useEffect(() => {
     const authData = localStorage.getItem("auth-store");
     if (!authData) router.replace("/login");
@@ -203,6 +207,12 @@ const Home = () => {
       if (!parsedData.state?.user) router.replace("/login");
     }
   }, [router]);
+
+    const { email } = useAuthStore(); 
+  const { data: users } = useQuery({queryKey:["users"], queryFn:fetchUsers});
+  // console.log(users, "users")
+
+   const currentUser = users?.find(u => u.email === email);
 
   const { data: products, isLoading, isError } = useQuery({
     queryKey: ["products"],
@@ -305,16 +315,14 @@ const Home = () => {
                   Delete
                 </button>
                 <button
-                  onClick={() =>
-                    repairMutation.mutate({
-                      productId: product._id,
-                      description: "General maintenance",
-                    })
-                  }
-                  className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600"
-                >
-                  Repair
-                </button>
+  onClick={() => {
+    setRepairingProduct(product);
+    setRepairModalOpen(true);
+  }}
+  className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600"
+>
+  Repair
+</button>
               </td>
             </tr>
           ))}
@@ -330,6 +338,16 @@ const Home = () => {
         onSubmit={handleSubmitProduct}
         initialData={editingProduct}
       />
+
+      <RepairFormModal
+  isOpen={repairModalOpen}
+  onClose={() => {
+    setRepairModalOpen(false);
+    setRepairingProduct(null);
+  }}
+  currentUser={currentUser} 
+  product={repairingProduct}
+/>
     </div>
   );
 };
