@@ -1,9 +1,10 @@
 import axios from "axios";
 
+// const API = "https://product-management-iota-nine.vercel.app";
 const API = "http://localhost:5000";
 
 export const loginApi = async (data) => {
-  const res = await fetch("http://localhost:5000/api/auth/login", {
+  const res = await fetch(`${API}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -13,7 +14,7 @@ export const loginApi = async (data) => {
 };
 
 export const registerApi = async (data) => {
-  const res = await fetch("http://localhost:5000/api/auth/register", {
+  const res = await fetch(`${API}/api/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -61,7 +62,27 @@ export const createRepair = async (repair) => {
 };
 
 // Get repairs for a product
-export const fetchRepairs = async (productId) => {
-  const res = await axios.get(`${API}/repairs/${productId}`);
-  return res.data;
+// export const fetchRepairs = async (productId) => {
+//   const res = await axios.get(`${API}/repairs/${productId}`);
+//   return res.data;
+// };
+
+export const fetchRepairs = async () => {
+  // const{ token} = useAuthStore();
+  // const token = useAuthStore.getState().token;
+  const res = await fetch(`${API}/repairs`, {
+    // headers: { Authorization: `Bearer ${token}` },
+  });
+  // console.log(res, "rip")
+  if (!res.ok) throw new Error("Failed to fetch repairs");
+  return res.json();
+};
+
+export const fetchRepairById = async (id) => {
+  // const token = useAuthStore.getState().token;
+  const res = await fetch(`${API}/repairs/${id}`, {
+    // headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) throw new Error("Failed to fetch repair");
+  return res.json();
 };

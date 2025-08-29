@@ -7,6 +7,7 @@ import { uploadImageToCloudinary } from "@/utils/cloudinary";
 import useAuthStore from "@/store/authStore";
 
 const RepairFormModal = ({ isOpen, onClose, product, currentUser }) => {
+  // console.log(product, "product")
   const queryClient = useQueryClient();
   const [repairItems, setRepairItems] = useState([
     { name: "", description: "", cost: "" },
@@ -63,6 +64,7 @@ const RepairFormModal = ({ isOpen, onClose, product, currentUser }) => {
     }
 
     repairMutation.mutate({
+      productName: product.name,
       productId: product._id,
       repairItems: repairItems.map((item) => ({
         name: item.name,
